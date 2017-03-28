@@ -1,0 +1,71 @@
+<% include ../elements/header.html %>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header">Create Group</h3>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <form role="form" method="post" action="addgroup" enctype='multipart/form-data'>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                    <label>
+                                                        Group Creator
+                                                    </label>
+                                                    <input class="form-control" placeholder="Enter Group Name" name="createdby" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    Group Name
+                                                </label>
+                                                <input class="form-control" placeholder="Enter Group Name" name="name" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>About Group</label>
+                                                <textarea class="form-control" rows="3" name="description" ></textarea>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Image for Group</label>
+                                                <input type='file' name='image' placeholder='Choose an Image'/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Cover Image for Group</label>
+                                                <input type="file" name="coverimage" />
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="recommend" />Recommend this group
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <button type="submit" class="btn btn-default">Submit Button</button>
+                                    </form>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+ <% include ../elements/footer.html %>

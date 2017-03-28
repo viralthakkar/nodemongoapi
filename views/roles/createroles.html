@@ -1,0 +1,59 @@
+<% include ../elements/header.html %>
+           <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header">Forms</h3>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Basic Form Elements
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-8" style="padding-left:50px;">
+                                        <form role="form" method="post" action="/addroles" />
+                                            <div class="form-group">
+                                                <label>Role Name</label>
+                                                <input class="form-control" name="role"  />
+                                                <p class="help-block"><b>Example</b> Super Admin,Admin, Reviewer</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea class="form-control" name="description" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>User in this role</label>
+                                                <% controls.forEach(function(control){ %>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="<%= control.functionname %>" value=1 /><%= control.usage %>
+                                                    </label>
+                                                </div>
+                                                <% })%>
+                                            </div>
+                                        
+                                            <button type="submit" class="btn btn-default">Submit Button</button>
+                                            <button type="reset" class="btn btn-default">Reset Button</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <!-- /.row (nested) -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+ <% include ../elements/footer.html %>

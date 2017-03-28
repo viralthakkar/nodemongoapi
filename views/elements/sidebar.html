@@ -1,0 +1,115 @@
+            <nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <div class="user-info-wrapper"> 
+                                <div class="user-info-profile-image">
+                                    <% if (tag==1) { %> 
+                                        <img src="../img/b.png" alt="" width="65" height="65" />
+                                    <% } if(tag == 2)  { %>
+                                        <img src="/../img/b.png" alt="" width="65" height="65" />
+                                    <% } if(tag == 0) { %>
+                                        <img src="img/b.png" alt="" width="65" height="65" />
+                                    <% } %>
+                                </div>
+                                <div class="user-info">
+                                    <div class="user-welcome">Welcome</div>
+                                    <div class="username"><%= userinfo %></div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="sidebar-search">
+
+                            <!-- /input-group -->
+                        </li>
+                        <% if(permission.posts=='1' || permission.users=='1' || permission.events=='1' || permission.groups=='1') {  %>
+                            <li>
+                                <a href="http://api.ballroomnightz.com/dashboard"><i class="fa fa-dashboard fa-fw fa-3x"></i> Dashboard</a>
+                            </li>
+                        <% } %>
+                        <% if(permission.users == 1) {  %>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw fa-3x"></i> Users<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="http://api.ballroomnightz.com:3000/ballroomusers">Active Users</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://api.ballroomnightz.com:3000/ballroomsuspendusers">Suspended Users</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                        <% } %>
+                        <% if(permission.posts == 1) {  %>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw fa-3x"></i> Posts<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="http://api.ballroomnightz.com:3000/abuserequests">Abuse Post Requests</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://api.ballroomnightz.com:3000/abusedposts">Abused Posts</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                        <% } %>
+                        <% if(permission.events == 1) {  %>    
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw fa-3x"></i> Events<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="http://api.ballroomnightz.com:3000/ballroomevents">Event Lists</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                        <% } %>
+                        <% if(permission.groups == 1) {  %>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw fa-3x"></i> Groups<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="http://api.ballroomnightz.com:3000/ballroomgroups">Group Lists</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://api.ballroomnightz.com:3000/creategroup">Create Group</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                        <% } %>
+                        <% if(permission.posts=='1' && permission.users=='1' && permission.events=='1'&& permission.groups=='1') {  %>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw fa-3x"></i> Setting<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="http://api.ballroomnightz.com:3000/ballroomroles">Create Roles</a>
+                                </li>
+                                <li>
+                                    <a href="http://api.ballroomnightz.com:3000/listroles">Role Lists</a>
+                                </li>
+                                <li>
+                                    <a href="http://api.ballroomnightz.com:3000/ballroomadmin">Admin User Lists</a>
+                                </li>       
+                               <li>
+                                    <a href="http://api.ballroomnightz.com:3000/addadminuser">Add Admin User</a>
+                                </li>                                                                
+                               <li>
+                                    <a href="http://api.ballroomnightz.com:3000/countrylist">Country Lists</a>
+                                </li>   
+                                <li>
+                                    <a href="http://api.ballroomnightz.com:3000/addstate">Add New State</a>
+                                </li>                                                               
+                                
+                            </ul>
+                        </li> 
+                    <% } %>    
+                    </ul>
+                    <!-- /#side-menu -->
+                </div>
+                <!-- /.sidebar-collapse -->
+            </nav>
+            <!-- /.navbar-static-side -->

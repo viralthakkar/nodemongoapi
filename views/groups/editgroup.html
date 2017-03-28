@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>Ballroom - Edit Group</title>
+
+        
+
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+        <meta name="description" content="Mint by Grozav is a flat design approach towards Admin Dashboards. Intuitive, cutting-edge, clean and easy to use and customize, as every Application UI should be. " />
+
+        <link rel="author" href="http://grozav.com" />
+
+        <!-- Core CSS - Include with every page -->
+        <link href="/../css/bootstrap.css" rel="stylesheet" />
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+
+        <!-- Page-Level Plugin CSS - Tables -->
+        <link href="/../css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+
+        <!-- Mint Admin CSS - Include with every page -->
+        <link href="/../css/mint-admin.css" rel="stylesheet" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
+    <body>
+
+        <div id="wrapper">
+
+            <nav class="navbar navbar-default navbar-static-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://api.ballroomnightz.com/dashboard">
+                        <img class="brand-logo" src="/../img/logo.png" alt="" />
+                        Ballroom
+                    </a>
+                </div>
+                <!-- /.navbar-header -->
+
+                <ul class="nav navbar-top-links navbar-right">
+                   
+                    <!-- /.dropdown -->
+  
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user  fa-2x fa-fw"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                          <!--  <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li> -->
+                            <li><a href="http://api.ballroomnightz.com/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /.navbar-top-links -->
+
+            </nav>
+            <!-- /.navbar-static-top -->
+<% include ../elements/sidebar.html %>
+
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header">Edit Group</h3>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <form role="form" method="post" action="/ballroomgroups/update" enctype='multipart/form-data'>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                            <label>
+                                                                Group Creator
+                                                            </label>
+                                                            <input class="form-control" placeholder="Enter Group Name" name="createdby" value="<%= group.createdby %>" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Group Name
+                                                        </label>
+                                                        <input class="form-control" placeholder="Enter Group Name" name="name" value="<%= group.name %>" />
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>About Group</label>
+                                                        <textarea class="form-control" rows="3" name="description"><%= group.description %></textarea>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label>Image for Group</label>
+                                                        <img src="/../img/<%= group.image %>" alt="Group Image" height="100px" width="100px" />
+                                                        <input type='file' name='image' placeholder='Choose an Image' />
+                                                        <input type="hidden" value="<%= group.image %>" name="oldImage" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Cover Image for Group</label>
+                                                        <img src="/../img/<%= group.coverimage %>" height="100px" width="100px" />
+                                                        <input type="file" name="coverimage" />
+                                                        <input type="hidden" value="<%= group.coverimage %>" name="oldCoverImage"/>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <% if (group.recommend){ %>
+                                                                <input type="checkbox" name="recommend" checked/>Recommend this group
+                                                            <%} else {%>
+                                                                <input type="checkbox" name="recommend"/>Recommend this group
+                                                            <%}%>
+                                                        </label>
+                                                    </div>
+                                                        <input type="hidden" name="id" value="<%= group._id %>" />
+                                                    </div>
+                                                </div>
+                                            
+                                            <button type="submit" class="btn btn-default">Save Changes</button>
+                                        </form>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <script src="/../js/jquery-1.10.2.js"></script>
+        <script src="/../js/bootstrap.min.js"></script>
+        <script src="/../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+        <!-- Page-Level Plugin Scripts - Forms -->
+
+        <!-- Mint Admin Scripts - Include with every page -->
+        <script src="/../js/mint-admin.js"></script>
+  </body>
+
+</html>

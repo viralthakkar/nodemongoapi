@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title><%= title %></title>
+
+        
+
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+        <meta name="description" content="Mint by Grozav is a flat design approach towards Admin Dashboards. Intuitive, cutting-edge, clean and easy to use and customize, as every Application UI should be. " />
+
+        <link rel="author" href="http://grozav.com" />
+
+        <!-- Core CSS - Include with every page -->
+        <link href="../css/bootstrap.css" rel="stylesheet" />
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+
+        <!-- Page-Level Plugin CSS - Tables -->
+        <link href="../css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+
+        <!-- Mint Admin CSS - Include with every page -->
+        <link href="../css/mint-admin.css" rel="stylesheet" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
+    <body>
+
+
+	<div id="wrapper">
+
+            <nav class="navbar navbar-default navbar-static-top" role="navigation">
+                
+
+                <ul class="nav navbar-top-links navbar-right">
+                   
+                    <!-- /.dropdown -->
+  
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user  fa-2x fa-fw"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                          <!--  <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li> -->
+                            <li><a href="http://api.ballroomnightz.com:3000/organizer/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /.navbar-top-links -->
+
+            </nav>
+          
+
+             <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header text-asbestos">Dashboard</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-primary text-center panel-eyecandy">
+                            <div class="panel-body asbestos">
+                                <i class="fa fa-bar-chart-o fa-3x"></i>
+                                <h3></h3>
+                            </div>
+                            <div class="panel-footer">
+                                <span class="panel-eyecandy-title">
+									
+										<input name="email" value = "<%= userDetails.email %>" type="hidden">
+									  <a href="/organizer/addevent" class="btn btn-outline btn-primary" > Create Event</a>
+									
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-xs-6 col-md-3 -->
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-primary text-center panel-eyecandy">
+                            <div class="panel-body theme-color">
+                                <i class="fa fa-shopping-cart fa-3x"></i>
+                                <h3><%= userDetails.email %> </h3>
+                            </div>
+                            <div class="panel-footer">
+                                <span class="panel-eyecandy-title">
+                                    email
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-xs-6 col-md-3 -->
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-primary text-center panel-eyecandy">
+                            <div class="panel-body asbestos">
+                                <i class="fa fa-users fa-3x"></i>
+                                <h3><%= userDetails.bizdetails %> </h3>
+                            </div>
+                            <div class="panel-footer">
+                                <span class="panel-eyecandy-title">
+                                    Business Details
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-xs-6 col-md-3 -->
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-primary text-center panel-eyecandy">
+                            <div class="panel-body theme-color">
+                                <i class="fa fa-comments fa-3x"></i>
+                                <h3> </h3>
+                            </div>
+                            <div class="panel-footer">
+                                <span class="panel-eyecandy-title">
+                                    Events
+									<a href="/organizer/myevents" class="btn btn-outline btn-primary" > My Events</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-xs-6 col-md-3 -->
+                </div>
+				<% if(event !== "notAvailable"){ %>
+					Created Event's Details:
+					<div>
+						Event Name: 		<%= event.name %><br />
+						Event Description: 	<%= event.description %><br />
+						Event Category: 	<%= event.category %><br />
+						Event Location:		<%= event.address + ", "+ event.state + ", "+ event.country %><br /><br />
+					<!--	Event Start Time:	<%= new Date(event.from_time) %><br />
+						Event End Time:		<%= new Date(event.to_time) %><br /><br />
+					-->
+						Event Start Time:	<%= event.from_time %><br />
+						Event End Time:		<%= event.to_time %><br /><br />
+						Event Image:		<img src = "/img/Event/<%=event.image%>" height="100px" width="100px"></img>
+					</div>
+				<% } %>
+
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+
+
+
+         <!-- Core Scripts - Include with every page -->
+        <script src="../js/jquery-1.10.2.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+        <!-- Page-Level Plugin Scripts - Dashboard -->
+        <script src="../js/plugins/morris/raphael-2.1.0.min.js"></script>
+        <script src="../js/plugins/morris/morris.js"></script>
+
+        <!-- Mint Admin Scripts - Include with every page -->
+        <script src="../js/mint-admin.js"></script>
+
+        <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
+        <script src="../js/demo/dashboard-demo.js"></script>
+    </body>
+
+</html>

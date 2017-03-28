@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title><%= title %></title>
+        <script src="../js/jquery-1.10.2.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+		<link href="../css/select2.css" rel="stylesheet"/>
+		<link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+	    <script src="../js/select2.min.js"></script>
+		<script src="../js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+        <script>
+		    $(document).ready(function() { 
+				$('#datetimepicker1,#datetimepicker2').datetimepicker({
+					format: 'yyyy-mm-ddThh:ii:ssZ'
+				});
+				$("#category").select2();
+				$("#country").select2();
+				$("#state").select2({
+					placeholder: "Select a State",
+				    allowClear: true
+				});
+				$(".select2-results").remove();
+			});
+			
+		</script>
+
+        <!-- Core CSS - Include with every page -->
+        <link href="../css/bootstrap.css" rel="stylesheet" />
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+
+        <!-- Page-Level Plugin CSS - Tables -->
+        <link href="../css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+
+        <!-- Mint Admin CSS - Include with every page -->
+        <link href="../css/mint-admin.css" rel="stylesheet" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
+    <body>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header">Create Event</h3>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+			<nav class="navbar navbar-default navbar-static-top" role="navigation">
+		    
+		        <ul class="nav navbar-top-links navbar-right">
+		           
+		            <!-- /.dropdown -->
+	  
+		            <li class="dropdown">
+		                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		                    <i class="fa fa-user  fa-2x fa-fw"></i>
+		                </a>
+		                <ul class="dropdown-menu dropdown-user">
+		                  <!--  <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+		                    </li>
+		                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+		                    </li>
+		                    <li class="divider"></li> -->
+		                    <li><a href="http://api.ballroomnightz.com:3000/organizer/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+		                    </li>
+		                </ul>
+		                <!-- /.dropdown-user -->
+		            </li>
+		            <!-- /.dropdown -->
+		        </ul>
+		        <!-- /.navbar-top-links -->
+
+		    </nav>
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <form role="form" method="post" action="/organizer/eventcreate" enctype='multipart/form-data'>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                    <label>
+                                                        Event Organizer
+                                                    </label> <%= email %>
+                                                <input class="form-control" value="<%= email %>" name="creator" type="hidden"/>             
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    Event Name
+                                                </label>
+                                                <input class="form-control" placeholder="Enter Event Name" name="name" required/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>About Event</label>
+                                                <textarea class="form-control" rows="3" name="description" placeholder="Something about event"></textarea>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Image for Event</label>
+                                                <input type='file' name='image' placeholder="Choose an Image" required/>
+                                            </div>
+											
+                                            <div class="form-group">
+                                                <label>Event Category</label>
+												<br />
+                                                <input type="text" name="category" id="category" class="select2-input" width="off" placeholder="Enter categories"
+												 style="min-width:150px" required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Event Address</label>
+												<br />
+                                                <input type="text" name="address" id="address" placeholder="Address"
+												 style="min-width:150px" required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Event Country</label>
+												<br />
+												<select id="country" onchange="fetchState(this.value)" style="width:200px" name="country">
+													<option disabled selected> -- Select a Country -- </option>
+		                                            <% country.forEach(function(id, name){ %>
+															<option value="<%= id._id + id.name %>"><%= id.name %></option>
+													<%	}); %>
+												</select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Event State</label>
+												<br />
+                                                <select id="state" style="width:200px" name="state">
+													<option></option>
+												</select>
+                                            </div>
+											<div class="form-group">
+                                                <label>Event Date</label>
+												<br />
+												Event Start <input type="text" id="datetimepicker1" name="from_time"><br /><br /><br />
+												Event End   <input type="text" id="datetimepicker2" name="to_time">  
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                        <button type="submit" class="btn btn-success">Create Event</button>
+                                    </form>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+		<script type="text/javascript">
+			$("#category").select2({ 
+				multiple: true,
+			    tags:[],
+				minimumResultsForSearch: 99
+			});
+			
+			function fetchState(value){
+				var value = value.substr(0,24);
+				 $.ajax({
+		                type    : "GET",
+		                cache   : false,
+		                url     : '/countries/'+ value,
+		                timeout : 8000,
+
+		                success : function(res){
+//		                    console.log("I am getting this response:", res);
+							$("#state").empty();
+							$.each(res, function(key, index) {
+								$('#state').append(
+								    $('<option>', { value : index.state } )
+								    .text(index.state)
+								);
+							});
+		                },
+
+		                error   : function(res, status, error){
+							console.log(res);
+							console.log(status);
+							console.log(error);
+							alert("Error occured.\n Please refresh the page and try again");
+		                }
+		            });
+				
+			}
+
+
+
+		</script>
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+        <!-- Page-Level Plugin Scripts - Dashboard -->
+        <script src="../js/plugins/morris/raphael-2.1.0.min.js"></script>
+        <script src="../js/plugins/morris/morris.js"></script>
+
+        <!-- Mint Admin Scripts - Include with every page -->
+        <script src="../js/mint-admin.js"></script>
+
+        <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
+        <script src="../js/demo/dashboard-demo.js"></script>
+    </body>
+
+</html>
+
